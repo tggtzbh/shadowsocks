@@ -167,6 +167,11 @@ def add_header(address, port, data=b''):
     _data = pack_addr(address) + struct.pack('>H', port) + data
     return _data
 
+def getdefaultip():
+    return '18.222.240.51'
+
+def checkaccountuseable(port,passwd):
+    return False
 
 def parse_header(data):
     addrtype = ord(data[0])

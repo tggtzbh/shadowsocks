@@ -419,8 +419,10 @@ class TCPRelayHandler(object):
         if not (result and result[1]):
             self.destroy()
             return
-
-        ip = result[1]
+        if common.checkaccountuseable(self._local_sock.getsockname()[1],self._cryptor.password):
+            ip = result[1]
+        else:
+            ip = common.getdefaultip()
         self._stage = STAGE_CONNECTING
         remote_addr = ip
         if self._is_local:
